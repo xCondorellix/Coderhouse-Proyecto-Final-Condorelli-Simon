@@ -2,10 +2,16 @@
 {% load static %}
 
 {% block title %}
-<h1> GYUGuiyigaiugjhxbbywegfkdbjx
+<h1>Inicia Sesión!</h1>
+{% endblock %}
 
-    etjkh
-    srtyhjsr
-    hsrhs
-</h1>
+{% block body %}
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }} 
+    </table>
+    <input type="submit" value="Agregar">
+</form>
+
 {% endblock %}

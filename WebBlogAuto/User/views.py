@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .forms import *
-from django.contrib.auth.forms import  UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LogoutView
 
 from Core import templates
 
@@ -16,9 +17,8 @@ def login_request(request):
             info=form.cleaned_data
             
             usu=info["username"]
-            correo = info["email"]
             clave=info["password"]
-            usuario=authenticate(username=usu, password=clave, email = correo,)
+            usuario=authenticate(username=usu, password=clave,)
 
             if usuario is not None:
                 login(request, usuario)
@@ -45,5 +45,4 @@ def register(request):
 
     else:
         form = RegistroUsuarioForm()
-        return render (request, "User/register.html", {"form": form})
-    
+        return render (request, "User/register.html", {"form": form}) 
